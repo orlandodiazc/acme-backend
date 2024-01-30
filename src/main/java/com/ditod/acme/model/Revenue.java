@@ -2,8 +2,10 @@ package com.ditod.acme.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "revenues")
 public class Revenue {
     private @Id String monthName;
     private int revenue;

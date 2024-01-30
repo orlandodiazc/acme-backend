@@ -15,7 +15,7 @@ public class RevenueController {
         this.repository = repository;
     }
 
-    @GetMapping("/revenue")
+    @GetMapping("/revenues")
     List<Revenue> all() {
         return repository.findAll();
     }

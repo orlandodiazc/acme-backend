@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS invoices (
     CONSTRAINT fk_customer FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
 
-CREATE TABLE IF NOT EXISTS revenue (
+CREATE TABLE IF NOT EXISTS revenues (
     month_name VARCHAR(4) NOT NULL UNIQUE,
     revenue INT NOT NULL
 );

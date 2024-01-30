@@ -27,7 +27,7 @@ VALUES
   ('3958dc9e-787f-4377-85e9-fec4b6a6442a', 8945, 'paid', '2023-06-03')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO revenue (month_name, revenue)
+INSERT INTO revenues (month_name, revenue)
 VALUES
   ('Jan', 2000),
   ('Feb', 1800),
