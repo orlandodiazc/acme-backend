@@ -2,7 +2,7 @@ package com.ditod.acme.dto;
 
 import java.util.UUID;
 
-public interface FilteredCustomerDTO {
+public interface CustomerFilteredDTO {
     UUID getId();
 
     String getName();

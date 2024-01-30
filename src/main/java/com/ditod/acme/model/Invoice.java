@@ -1,5 +1,6 @@
 package com.ditod.acme.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,9 +15,15 @@ public class Invoice {
     private int amount;
     private String status;
 
+    private LocalDate processingDate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
+    @JsonIgnore
     private Customer customer;
+
+    @Column(name = "customer_id", updatable = false, insertable = false)
+    private UUID customerId;
 
     public UUID getId() {
         return id;
@@ -38,7 +45,7 @@ public class Invoice {
         return customer;
     }
 
-    private LocalDate processingDate;
-
-
+    public UUID getCustomerId() {
+        return customerId;
+    }
 }

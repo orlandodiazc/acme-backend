@@ -1,7 +1,7 @@
 package com.ditod.acme.repository;
 
+import com.ditod.acme.dto.CustomerFilteredDTO;
 import com.ditod.acme.dto.CustomerSimpleDTO;
-import com.ditod.acme.dto.FilteredCustomerDTO;
 import com.ditod.acme.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -29,5 +29,5 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
             GROUP BY c.id
             ORDER BY c.name ASC
             """)
-    List<FilteredCustomerDTO> findFilteredCustomers(@Param("term") String query);
+    List<CustomerFilteredDTO> findFilteredCustomers(@Param("term") String query);
 }
