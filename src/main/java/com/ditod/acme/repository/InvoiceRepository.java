@@ -23,7 +23,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, UUID> {
     @Query(value = """
             SELECT
             SUM(CASE WHEN i.status = 'paid' THEN amount ELSE 0 END) AS paidInvoicesTotal,
-            SUM(CASE WHEN i.status = 'pending' THEN amount ELSE 0 END) AS paidPendingInvoices
+            SUM(CASE WHEN i.status = 'pending' THEN amount ELSE 0 END) AS pendingInvoicesTotal
             FROM Invoice i
              """)
     InvoiceTotalByStatusDTO findInvoiceTotalByStatus();

@@ -2,6 +2,7 @@ package com.ditod.acme.service;
 
 import com.ditod.acme.dto.InvoiceDetailsDTO;
 import com.ditod.acme.dto.InvoiceFilteredDTO;
+import com.ditod.acme.dto.InvoiceTotalByStatusDTO;
 import com.ditod.acme.model.Invoice;
 import com.ditod.acme.repository.InvoiceRepository;
 import org.springframework.data.domain.PageRequest;
@@ -41,5 +42,13 @@ public class InvoiceService {
 
     public Optional<Invoice> findInvoiceById(UUID id) {
         return repository.findById(id);
+    }
+
+    public InvoiceTotalByStatusDTO findInvoiceTotalByStatus() {
+        return repository.findInvoiceTotalByStatus();
+    }
+
+    public Long count() {
+        return repository.count();
     }
 }

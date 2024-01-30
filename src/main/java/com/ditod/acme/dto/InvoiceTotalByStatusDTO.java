@@ -2,7 +2,7 @@ package com.ditod.acme.dto;
 
 
 public interface InvoiceTotalByStatusDTO {
-    Integer getTotalPaidInvoices();
+    Integer getPaidInvoicesTotal();
 
-    Integer getTotalPendingInvoices();
+    Integer getPendingInvoicesTotal();
 }
