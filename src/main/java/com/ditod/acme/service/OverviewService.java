@@ -2,7 +2,7 @@ package com.ditod.acme.service;
 
 import com.ditod.acme.dto.InvoiceDetailsDTO;
 import com.ditod.acme.dto.InvoiceTotalByStatusDTO;
-import com.ditod.acme.dto.OverviewStatsDTO;
+import com.ditod.acme.dto.OverviewDTO;
 import com.ditod.acme.model.Revenue;
 import com.ditod.acme.repository.CustomerRepository;
 import com.ditod.acme.repository.RevenueRepository;
@@ -24,7 +24,7 @@ public class OverviewService {
         this.revenueRepository = revenueRepository;
     }
 
-    public OverviewStatsDTO findOverviewStats() {
+    public OverviewDTO findOverview() {
         Long invoiceCount = invoiceService.count();
         Long customerCount = customerRepository.count();
         InvoiceTotalByStatusDTO invoiceTotalByStatus =
@@ -32,7 +32,7 @@ public class OverviewService {
         List<InvoiceDetailsDTO> latestInvoices = invoiceService.findLatestInvoices();
         List<Revenue> revenues = revenueRepository.findAll();
 
-        return new OverviewStatsDTO(invoiceCount, customerCount,
+        return new OverviewDTO(invoiceCount, customerCount,
                 invoiceTotalByStatus.getPaidInvoicesTotal(),
                 invoiceTotalByStatus.getPendingInvoicesTotal(), revenues, latestInvoices);
     }

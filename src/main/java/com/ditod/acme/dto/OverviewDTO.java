@@ -4,7 +4,7 @@ import com.ditod.acme.model.Revenue;
 
 import java.util.List;
 
-public record OverviewStatsDTO(
+public record OverviewDTO(
         Long invoiceCount,
         Long customerCount,
         Integer totalPaidInvoices,
