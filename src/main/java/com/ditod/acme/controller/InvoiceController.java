@@ -1,7 +1,7 @@
 package com.ditod.acme.controller;
 
 import com.ditod.acme.dto.InvoiceDetailsDTO;
-import com.ditod.acme.dto.InvoiceFilteredDTO;
+import com.ditod.acme.dto.InvoiceFilteredPageableDTO;
 import com.ditod.acme.exception.InvoiceNotFoundException;
 import com.ditod.acme.model.Invoice;
 import com.ditod.acme.service.InvoiceService;
@@ -23,10 +23,10 @@ public class InvoiceController {
     }
 
     @GetMapping("/invoices")
-    List<InvoiceFilteredDTO> filteredInvoices(@RequestParam(required = false,
+    InvoiceFilteredPageableDTO filteredInvoices(@RequestParam(required = false,
             defaultValue = "") String query, @RequestParam(required = false,
-            defaultValue = "1") Integer currentPage) {
-        return invoiceService.findFilteredInvoices(query, currentPage);
+            defaultValue = "1") Integer page) {
+        return invoiceService.findFilteredInvoices(query, page);
     }
 
     @GetMapping("/invoices/latest")

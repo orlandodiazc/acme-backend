@@ -2,9 +2,11 @@ package com.ditod.acme.service;
 
 import com.ditod.acme.dto.InvoiceDetailsDTO;
 import com.ditod.acme.dto.InvoiceFilteredDTO;
+import com.ditod.acme.dto.InvoiceFilteredPageableDTO;
 import com.ditod.acme.dto.InvoiceTotalByStatusDTO;
 import com.ditod.acme.model.Invoice;
 import com.ditod.acme.repository.InvoiceRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,17 +29,18 @@ public class InvoiceService {
         return repository.findLatestInvoices(pageable);
     }
 
-    public List<InvoiceFilteredDTO> findFilteredInvoices(@RequestParam String query,
-                                                         @RequestParam Integer currentPage) {
+    public InvoiceFilteredPageableDTO findFilteredInvoices(@RequestParam String query,
+                                                           @RequestParam Integer currentPage) {
         Pageable pageable;
         if (currentPage < 1) {
             pageable = PageRequest.of(0, 6);
         } else {
             pageable = PageRequest.of(currentPage - 1, 6);
         }
-
-        // return list for now then change it to page info
-        return repository.findFilteredInvoices(query, pageable);
+        Page<InvoiceFilteredDTO> result = repository.findFilteredInvoices(query,
+                pageable);
+        return new InvoiceFilteredPageableDTO(result.getContent(),
+                result.getTotalPages());
     }
 
     public Optional<Invoice> findInvoiceById(UUID id) {

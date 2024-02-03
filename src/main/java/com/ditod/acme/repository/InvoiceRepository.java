@@ -4,6 +4,7 @@ import com.ditod.acme.dto.InvoiceDetailsDTO;
 import com.ditod.acme.dto.InvoiceFilteredDTO;
 import com.ditod.acme.dto.InvoiceTotalByStatusDTO;
 import com.ditod.acme.model.Invoice;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -41,6 +42,6 @@ public interface InvoiceRepository extends JpaRepository<Invoice, UUID> {
                 OR LOWER(i.status) LIKE LOWER(CONCAT('%', :term, '%'))
             ORDER BY i.processingDate DESC
               """)
-    List<InvoiceFilteredDTO> findFilteredInvoices(@Param("term") String query,
+    Page<InvoiceFilteredDTO> findFilteredInvoices(@Param("term") String query,
                                                   Pageable pageable);
 }
