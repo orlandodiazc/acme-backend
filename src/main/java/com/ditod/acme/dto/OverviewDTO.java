@@ -1,6 +1,6 @@
 package com.ditod.acme.dto;
 
-import com.ditod.acme.model.Revenue;
+import com.ditod.acme.entity.Revenue;
 
 import java.util.List;
 

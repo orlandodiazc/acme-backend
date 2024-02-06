@@ -1,4 +1,4 @@
-package com.ditod.acme.model;
+package com.ditod.acme.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

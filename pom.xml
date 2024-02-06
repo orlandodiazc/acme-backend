@@ -68,7 +68,7 @@
                         <configuration>
                             <jsonLibrary>jackson2</jsonLibrary>
                             <classPatterns>
-                                <pattern>com.ditod.acme.model.*</pattern>
+                                <pattern>com.ditod.acme.entity.*</pattern>
                                 <pattern>com.ditod.acme.dto.*</pattern>
                             </classPatterns>
                             <outputFile>target/rest.ts</outputFile>
@@ -78,7 +78,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 

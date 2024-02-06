@@ -3,7 +3,7 @@ package com.ditod.acme.service;
 import com.ditod.acme.dto.InvoiceDetailsDTO;
 import com.ditod.acme.dto.InvoiceTotalByStatusDTO;
 import com.ditod.acme.dto.OverviewDTO;
-import com.ditod.acme.model.Revenue;
+import com.ditod.acme.entity.Revenue;
 import com.ditod.acme.repository.CustomerRepository;
 import com.ditod.acme.repository.RevenueRepository;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class OverviewService {
     }
 
     public OverviewDTO findOverview() {
-        Long invoiceCount = invoiceService.count();
+        Long invoiceCount = invoiceService.countInvoices();
         Long customerCount = customerRepository.count();
         InvoiceTotalByStatusDTO invoiceTotalByStatus =
                 invoiceService.findInvoiceTotalByStatus();

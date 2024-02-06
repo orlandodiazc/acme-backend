@@ -21,6 +21,8 @@ public class ProjectConfig {
                 return config;
             });
         });
+        // update config csrf and allowedorigins
+        httpSecurity.csrf(c -> c.disable());
         httpSecurity.authorizeHttpRequests(c -> c.anyRequest().permitAll());
         return httpSecurity.build();
     }

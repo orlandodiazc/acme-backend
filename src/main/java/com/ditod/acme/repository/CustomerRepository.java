@@ -1,8 +1,8 @@
 package com.ditod.acme.repository;
 
 import com.ditod.acme.dto.CustomerFilteredDTO;
-import com.ditod.acme.dto.CustomerSimpleDTO;
-import com.ditod.acme.model.Customer;
+import com.ditod.acme.dto.CustomerSummaryDTO;
+import com.ditod.acme.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public interface CustomerRepository extends JpaRepository<Customer, UUID> {
     @Query("SELECT id as id, name as name FROM Customer")
-    List<CustomerSimpleDTO> findSimpleAll();
+    List<CustomerSummaryDTO> findSimpleAll();
 
     @Query(value = """   
             SELECT

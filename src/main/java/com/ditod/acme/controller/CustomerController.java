@@ -1,7 +1,7 @@
 package com.ditod.acme.controller;
 
 import com.ditod.acme.dto.CustomerFilteredDTO;
-import com.ditod.acme.dto.CustomerSimpleDTO;
+import com.ditod.acme.dto.CustomerSummaryDTO;
 import com.ditod.acme.repository.CustomerRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,8 +17,8 @@ public class CustomerController {
         this.repository = repository;
     }
 
-    @GetMapping("/customers/base")
-    List<CustomerSimpleDTO> all() {
+    @GetMapping("/customers/summary")
+    List<CustomerSummaryDTO> all() {
         return repository.findSimpleAll();
     }
 
