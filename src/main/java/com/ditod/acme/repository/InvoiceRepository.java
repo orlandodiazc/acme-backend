@@ -3,7 +3,7 @@ package com.ditod.acme.repository;
 import com.ditod.acme.dto.InvoiceDetailsDTO;
 import com.ditod.acme.dto.InvoiceFilteredDTO;
 import com.ditod.acme.dto.InvoiceTotalByStatusDTO;
-import com.ditod.acme.model.Invoice;
+import com.ditod.acme.entity.Invoice;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface InvoiceRepository extends JpaRepository<Invoice, UUID> {
+
     @Query(value = """
             SELECT i.id as id, i.amount as amount, c.name as name, c.imageUrl as imageUrl, c.email as email
             FROM Invoice i JOIN i.customer c
@@ -39,7 +40,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, UUID> {
                 OR LOWER(c.email) LIKE LOWER(CONCAT('%', :term, '%'))
                 OR CAST(i.amount AS string) LIKE LOWER(CONCAT('%', :term, '%'))
                 OR CAST(i.processingDate AS string) LIKE LOWER(CONCAT('%', :term, '%'))
-                OR LOWER(i.status) LIKE LOWER(CONCAT('%', :term, '%'))
+                OR CAST(i.status AS string) LIKE LOWER(CONCAT('%', :term, '%'))
             ORDER BY i.processingDate DESC
               """)
     Page<InvoiceFilteredDTO> findFilteredInvoices(@Param("term") String query,
