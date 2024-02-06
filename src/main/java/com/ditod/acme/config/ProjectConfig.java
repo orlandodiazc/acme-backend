@@ -15,7 +15,8 @@ public class ProjectConfig {
         httpSecurity.cors(c -> {
             c.configurationSource(request -> {
                 CorsConfiguration config = new CorsConfiguration();
-                config.setAllowedOrigins(List.of("http://localhost:5173"));
+                config.setAllowedOrigins(List.of("https://acme-spring-dashboard.vercel" +
+                        ".app/"));
                 config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
                 config.setAllowedHeaders(List.of("*"));
                 return config;
