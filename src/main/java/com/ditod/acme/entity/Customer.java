@@ -1,4 +1,4 @@
-package com.ditod.acme.model;
+package com.ditod.acme.entity;
 
 import jakarta.persistence.*;
 
@@ -8,8 +8,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "customers")
 public class Customer {
-    private @Id
-    @GeneratedValue(strategy = GenerationType.UUID) UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String name;
     private String email;
 

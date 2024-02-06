@@ -2,13 +2,11 @@ package com.ditod.acme.controller;
 
 import com.ditod.acme.dto.InvoiceDetailsDTO;
 import com.ditod.acme.dto.InvoiceFilteredPageableDTO;
+import com.ditod.acme.dto.RequestInvoiceDTO;
+import com.ditod.acme.entity.Invoice;
 import com.ditod.acme.exception.InvoiceNotFoundException;
-import com.ditod.acme.model.Invoice;
 import com.ditod.acme.service.InvoiceService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -37,6 +35,21 @@ public class InvoiceController {
     @GetMapping("/invoices/{id}")
     Invoice one(@PathVariable UUID id) {
         return invoiceService.findInvoiceById(id).orElseThrow(() -> new InvoiceNotFoundException(id));
+    }
+    @PostMapping("/invoices")
+    Invoice newInvoice(@RequestBody RequestInvoiceDTO newInvoice) {
+        return invoiceService.saveInvoice(newInvoice);
+    }
+
+    @PutMapping("/invoices/{id}")
+    Invoice editInvoice(@RequestBody RequestInvoiceDTO newInvoice,
+                        @PathVariable UUID id) {
+        return invoiceService.updateInvoice(newInvoice, id);
+    }
+
+    @DeleteMapping("/invoices/{id}")
+    void deleteInvoice(@PathVariable UUID id) {
+        invoiceService.deleteById(id);
     }
 
 }

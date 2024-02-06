@@ -1,10 +1,7 @@
 package com.ditod.acme.service;
 
-import com.ditod.acme.dto.InvoiceDetailsDTO;
-import com.ditod.acme.dto.InvoiceFilteredDTO;
-import com.ditod.acme.dto.InvoiceFilteredPageableDTO;
-import com.ditod.acme.dto.InvoiceTotalByStatusDTO;
-import com.ditod.acme.model.Invoice;
+import com.ditod.acme.dto.*;
+import com.ditod.acme.entity.Invoice;
 import com.ditod.acme.repository.InvoiceRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -51,7 +48,28 @@ public class InvoiceService {
         return repository.findInvoiceTotalByStatus();
     }
 
-    public Long count() {
+    public Long countInvoices() {
         return repository.count();
+    }
+
+    public Invoice saveInvoice(RequestInvoiceDTO newInvoice) {
+        Invoice invoice = new Invoice(newInvoice.customerId(), newInvoice.amount(),
+                newInvoice.status());
+        return repository.save(invoice);
+    }
+
+    public void deleteById(UUID id) {
+        repository.deleteById(id);
+    }
+
+    public Invoice updateInvoice(RequestInvoiceDTO newInvoice, UUID id) {
+        return repository.findById(id)
+                         .map(invoice -> {
+                             invoice.setCustomerId(newInvoice.customerId());
+                             invoice.setAmount(newInvoice.amount());
+                             invoice.setStatus(newInvoice.status());
+                             return repository.save(invoice);
+                         })
+                         .orElseGet(() -> this.saveInvoice(newInvoice));
     }
 }
