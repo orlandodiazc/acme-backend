@@ -21,8 +21,8 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
                 c.email as email,
                 c.imageUrl as imageUrl,
                 COUNT(i.id) as invoicesCount,
-                SUM(CASE WHEN i.status = 'pending' THEN i.amount ELSE 0 END) AS pendingInvoicesTotal,
-                SUM(CASE WHEN i.status = 'paid' THEN i.amount ELSE 0 END) AS paidInvoicesTotal
+                SUM(CASE WHEN i.status = com.ditod.acme.model.Status.pending THEN i.amount ELSE 0 END) AS pendingInvoicesTotal,
+                SUM(CASE WHEN i.status = com.ditod.acme.model.Status.paid THEN i.amount ELSE 0 END) AS paidInvoicesTotal
             FROM Customer c
             LEFT JOIN c.invoices i
             WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :term, '%')) OR LOWER(c.email) LIKE LOWER(CONCAT('%', :term, '%'))
